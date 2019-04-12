@@ -277,7 +277,7 @@ public class SudokuVentana extends JFrame{
 							try {
 								input[(n-1)].grabFocus();
 							} catch (Exception e) {
-								
+									
 							}
 						}
 						else {
