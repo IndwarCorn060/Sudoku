@@ -265,6 +265,25 @@ public class SudokuVentana extends JFrame{
 							}
 						}
 						break;
+					case KeyEvent.VK_BACK_SPACE:
+						int n=0;
+						for(int i=0; i<input.length; i++) {
+							if(input[i].equals(evento.getSource())) {
+								n=i;
+								i=81;
+							}
+						}
+						if(input[n].getText().equals("")) {
+							try {
+								input[(n-1)].grabFocus();
+							} catch (Exception e) {
+								
+							}
+						}
+						else {
+							input[n].setText(null);
+						}
+						break;
 					case KeyEvent.VK_RIGHT:
 						for(int i=0; i<input.length; i++) {
 							if(input[i].equals(evento.getSource())) {
