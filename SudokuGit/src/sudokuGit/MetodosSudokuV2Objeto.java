@@ -53,11 +53,13 @@ public class MetodosSudokuV2Objeto {
 	}
 	
 	public void insertarElemento(int fila, int columna, int valor) {
-		fila=(byte)fila;
-		columna=(byte)columna;
-		valor=(byte)valor;
-		this.array[fila-1][columna-1] = new byte [1];
-		this.array[fila-1][columna-1][0]=(byte)valor;
+		if(valor!=0&&valor<10) {
+			fila=(byte)fila;
+			columna=(byte)columna;
+			valor=(byte)valor;
+			this.array[fila-1][columna-1] = new byte [1];
+			this.array[fila-1][columna-1][0]=(byte)valor;
+		}
 	}
 	
 	public byte[][][] copiarSudoku(){
@@ -84,7 +86,7 @@ public class MetodosSudokuV2Objeto {
 	 * -subconjuntos ocultos par
 	 */
 	
-	private void intentarResolverCasillaPorUnicaOpcionEnLasPosibilidades(byte fila, byte columna) { //METODO DE RESOLUCION POR UNICA OPCION
+	public void intentarResolverCasillaPorUnicaOpcionEnLasPosibilidades(byte fila, byte columna) { //METODO DE RESOLUCION POR UNICA OPCION no usado
 		byte cont=0, posicion=0;
 		for(byte o=0; o<this.array[fila][columna].length; o++) {
 			if(this.array[fila][columna][o]!=0) {
@@ -187,7 +189,7 @@ public class MetodosSudokuV2Objeto {
 		}
 	}
 	
-	private void intentarResolverCasillaPorUnicaPosibilida() {//MOTODO DE RESOLUCION POR BARRIDO
+	public void intentarResolverCasillaPorUnicaPosibilida() {//MOTODO DE RESOLUCION POR BARRIDO no usado
 		for(byte i=0; i<this.array.length; i++) {
 			for(byte e=0; e<this.array[i].length; e++) {
 				this.intentarResolverCasillaPorUnicaPosibilidaEnLaUbicacion(i, e);
@@ -889,7 +891,7 @@ public class MetodosSudokuV2Objeto {
 		}
 	}
 	
-	private void trioDesnudo() {
+	public void trioDesnudo() {  //no usado
 		byte p1, p2, p3;
 		byte cont=1;
 		for(byte i=0; i<this.array.length; i++) {
@@ -1101,7 +1103,7 @@ public class MetodosSudokuV2Objeto {
 		}
 	}
 	
-	private void trioOculto() {
+	public void trioOculto() {	//no usado
 		for(byte i=0; i<this.array.length; i++) {
 			for(byte e=0; e<this.array[i].length; e++) {
 				if(this.array[i][e][0]==0&&this.numPosibilidades(i, e)>3) {

@@ -71,6 +71,7 @@ public class SudokuVentana extends JFrame{
 		
 		ControlBoton cb = new ControlBoton(this);
 		this.resolver.addActionListener(cb);
+		this.resolver.addKeyListener(cb);
 		this.reset.addActionListener(cb);
 		this.mLog.addActionListener(cb);
 		this.sudokuPrueba.addActionListener(cb);
@@ -134,6 +135,7 @@ public class SudokuVentana extends JFrame{
 		private void metodoReset() {
 			for(int i=0; i<input.length; i++) {
 				input[i].setText(null);	
+				input[i].setEditable(true);
 				input[i].setBackground(Color.WHITE);
 			}
 			txt.setText(null);
@@ -177,6 +179,7 @@ public class SudokuVentana extends JFrame{
 			for(int i=0; i<input.length; i++) {
 				if(cod.charAt(cont)!='.') {
 					input[i].setText(Character.toString(cod.charAt(cont)));
+					input[i].setEditable(false);
 				}
 				cont++;
 			}
@@ -220,7 +223,6 @@ public class SudokuVentana extends JFrame{
 			if(evento.getSource()==sudokuAleatorio) {
 				this.confirmacionAleatorio();
 			}
-			
 		}
 
 		@Override
@@ -286,11 +288,20 @@ public class SudokuVentana extends JFrame{
 			// TODO Auto-generated method stub
 			
 		}
+		
+		private boolean isInt(char txt) {
+			try {
+				Integer.parseInt(String.valueOf(txt));
+				return true;
+			} catch (Exception e) {
+				return false;
+			}
+		}
 
 		@Override
 		public void keyTyped(KeyEvent evento) {
 			// TODO Auto-generated method stub
-			if((evento.getSource() instanceof JTextField)&&mDesplazar.isSelected()) {
+			if((evento.getSource() instanceof JTextField)&&mDesplazar.isSelected()&&isInt(evento.getKeyChar())) {
 				for(int i=0; i<input.length; i++) {
 					if(input[i].equals(evento.getSource())) {
 						try {
